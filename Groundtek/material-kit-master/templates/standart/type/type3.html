@@ -1,0 +1,16 @@
+{% load static %}
+
+<div class="section section-examples">
+    <div class="container-fluid text-center">
+        <div class="row">
+            {% for test in type.container.all %}
+            <div class="col-6 ">
+
+                <img src="{{ test.pictures.image.url }} " alt="{{ test.pictures.alt }}" class="img-raised rounded img-fluid">
+                <a class="btn  btn-link btn-info btn-lg" href="{{ test.examples.get_absolute_url }}">{{ test.examples.title}} </a>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

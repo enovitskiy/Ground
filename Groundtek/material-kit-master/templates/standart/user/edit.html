@@ -1,0 +1,106 @@
+{% extends "standart/user/base.html" %}
+{% block title %}Edit your account{% endblock %}
+
+{% block login %}
+
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-6 mx-auto">
+            <div class="card card-login">
+
+                    <div class="card-header card-header-info text-center">
+    <h1>Edit your account</h1>
+    <p>You can edit your account using the following form:</p>
+                    </div>
+    <form action="." method="post" enctype="multipart/form-data">
+                <div class="card-body">
+
+
+
+                        <div class="input-group">
+                        {{ user_form.first_name.label }}
+                    <div class="input-group-prepend">
+
+                        <span class="input-group-text">
+                        <i class="material-icons">face</i>
+                        </span>
+                        {{ user_form.first_name }}
+
+                    </div>{{ user_form.first_name.help_text }}
+
+                    </div>
+
+
+                                        <div class="input-group">
+                        {{ user_form.last_name.label }}
+                    <div class="input-group-prepend">
+
+                        <span class="input-group-text">
+                        <i class="material-icons">face</i>
+                        </span>
+                        {{ user_form.last_name }}
+
+                    </div>{{ user_form.last_name.help_text }}
+
+                    </div>
+
+
+                             <div class="input-group">
+                        {{ user_form.email.label }}
+                    <div class="input-group-prepend">
+
+                        <span class="input-group-text">
+                        <i class="material-icons">face</i>
+                        </span>
+                        {{ user_form.email }}
+
+                    </div>{{ user_form.email.help_text }}
+
+                    </div>
+
+
+                                     <div class="input-group">
+                        {{ profile_form.date_of_birth.label }}
+                    <div class="input-group-prepend">
+
+                        <span class="input-group-text">
+                        <i class="material-icons">face</i>
+                        </span>
+                        {{ profile_form.date_of_birth }}
+
+                    </div>{{ profile_form.date_of_birth.help_text }}
+
+                    </div>
+
+
+
+                                          <div class="input-group">
+                        {{ profile_form.photo.label }}
+                    <div class="input-group-prepend">
+
+                        <span class="input-group-text">
+                        <i class="material-icons">face</i>
+                        </span>
+                        {{ profile_form.photo }}
+
+                    </div>{{ profile_form.photo.help_text }}
+
+                    </div>
+
+
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                    <div class="footer text-center">
+                    <button type="submit" class="btn btn-info btn-link btn-wd btn-lg">Save changes</button>
+                    </div>
+
+                </div>
+                     </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+{% endblock %}

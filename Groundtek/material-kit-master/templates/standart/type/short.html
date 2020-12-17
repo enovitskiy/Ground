@@ -1,0 +1,17 @@
+{% load static %}
+
+
+
+
+
+
+
+
+        {% for test in type.container.all %}
+        <div class="card-body text-primary">
+            <h2 class="card-title">{{description.title}}</h2>
+            <p class="text-rose">{%for i in description.marks.all%}{{i.title}}  {%endfor%}</p>
+        <h4 class="card-title text-center">{{ test.title}}</h4>
+        <p class="card-text">{{ test.text}}</p>
+        </div>
+        {% endfor %}

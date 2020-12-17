@@ -1,0 +1,24 @@
+{% load static %}
+{% load i18n %}
+
+<footer class="footer" data-background-color="black">
+    <div class="container">
+    <nav class="float-left">
+    <ul>
+        {% for v in navbar.keys %}
+      <li>
+        <a href="{{ v.get_absolute_url }}">
+          {{ v.newslug.name }}
+        </a>
+      </li>
+      <li>{% endfor %}
+    </ul>
+    </nav>
+    <div class="copyright float-right">
+    &copy;
+    <script>
+      document.write(new Date().getFullYear())
+    </script>, {% trans "made by Groundtek" %}.
+    </div>
+    </div>
+</footer>

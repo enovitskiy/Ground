@@ -1,0 +1,12 @@
+{% extends nid.template_name.title %}
+{% load i18n %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+  {% for type in text %}
+  {% include type.template_name.title %}
+  {% endfor %}
+</div>
+{% endblock %}
