@@ -1,0 +1,31 @@
+{% extends nid.template_name.title %}
+{% load static%}
+
+
+{% block log %}
+
+
+<ul class="nav nav-pills nav-pills-danger justify-content-center">
+
+    <li class="nav-item"><a class="nav-link" href="{% url 'visits:login' %}">Log-in</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'visits:register' %}">Register</a></li>
+        {% if request.user.is_authenticated %}
+    <li class="nav-item"><a class="nav-link" href="{% url 'visits:edit' %}">Edit</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'visits:logout' %}">Logout</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'visits:password_change' %}">Password-change</a></li>
+        {% endif %}
+</ul>
+
+<div class="tab-content tab-space">
+    {% if request.user.is_authenticated %}
+        <h1 class="text-center">Hello {{ request.user.first_name }},</h1>
+    {% endif %}
+    <div class="tab-pane active text-center" id="pill1">
+            {% block login %}
+        {% endblock %}
+    </div>
+</div>
+
+
+
+{% endblock %}

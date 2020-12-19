@@ -1,0 +1,60 @@
+{% extends "standart/user/base.html" %}
+
+
+
+{% block login %}
+
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mx-auto">
+            <div class="card card-login">
+
+                    <div class="card-header card-header-info text-center">
+                    <h1>Log-in</h1>
+                    </div>
+                <form action="{% url 'visits:login' %}" method="post">
+                <div class="card-body">
+                                        {% if form.errors %}
+                    <p>
+                    Your username and password didn't match.
+                    Please try again.
+                    </p>
+                    {% else %}
+                    {{nid}}
+                    <p>Please, use the following form to log-in. If you don't have an account <a href="{% url 'visits:register' %}">register here </a></p>
+                    {% endif %}
+
+                    <p><a href="{% url 'visits:password_reset' %}">Forgotten your password?</a></p>
+                    <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                        <i class="material-icons">face</i>
+                        </span>
+                        {{ form.username }}
+                    </div>
+
+                    </div>
+                    <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                        <i class="material-icons">lock_outline</i>
+                        </span>{{ form.password }}
+                    </div>
+
+                    </div>
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                    <div class="footer text-center">
+                    <button type="submit" class="btn btn-info btn-link btn-wd btn-lg">Submit</button>
+                    </div>
+
+                </div>
+                     </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+{% endblock %}

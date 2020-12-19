@@ -1,0 +1,18 @@
+{% load static %}
+{% for test in type.container.all %}
+<div class="section text-center">
+    <div class="row">
+        <div class="col-sm-8">
+            <h2 class="title">{{ test.title}}</h2>
+                {{ test.text|safe}}
+        </div>
+        <div class="col-sm-4 d-flex align-items-center">
+
+            <div >
+                <h2 class="info-title"></h2>
+                <img class=" mw-100" src="{{ test.pictures.image.url }}" alt="test.pictures.alt">
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}

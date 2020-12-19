@@ -1,0 +1,62 @@
+{% load static %}
+
+<div class="row justify-content-between">
+    <div class="col-sm-8">
+                <div class="card card-raised card-carousel ">
+              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
+                <ol class="carousel-indicators">
+                  {% for test in type.container.all %}
+                  {% if forloop.counter == 1  %}
+                  <li data-target="#carouselExampleIndicators" data-slide-to="{{forloop.counter}}" class="active"></li>
+                  {% else %}
+                  <li data-target="#carouselExampleIndicators" data-slide-to="{{forloop.counter}}"></li>
+                  {% endif %}
+                  {% endfor %}
+                </ol>
+                <div class="carousel-inner">
+                    {% for test in type.container.all %}
+                    {% if forloop.counter == 1  %}
+                  <div class="carousel-item active">
+                    {% else %}
+                  <div class="carousel-item">
+                    {% endif %}
+
+                    <img class=" mw-100 " src="{{ test.pictures.image.url }}" alt="test.pictures.alt">
+
+                  </div>
+                    {% endfor %}
+
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <i class="material-icons">keyboard_arrow_left</i>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <i class="material-icons">keyboard_arrow_right</i>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            </div>
+    </div>
+
+
+    <div class="col-sm-6  col-md-4 justify-content-end  " style="width: 20rem;">
+
+
+        <div class="card "  >
+        <ul class="list-group list-group-flush ">
+
+          {% for test in type.container.all %}
+         <div > <h3 class="card-text text-info text-center"> {{ test.title}}</h3></div>
+        <li class="list-group-item ">
+         {{test.text}}</li class="list-group-item ">
+          {% endfor %}
+
+        </ul>
+        </div>
+
+
+    </div>
+
+</div>
+

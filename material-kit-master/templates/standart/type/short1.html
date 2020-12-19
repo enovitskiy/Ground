@@ -1,0 +1,13 @@
+{% load static %}
+<div class="row">
+    {% for test in type.container.all %}
+    <div class="col-lg-4">
+    <div class="card">
+    <div class="card-body">
+    <h5 class="card-title">{{ test.title}}</h5>
+    <p class="card-text">{{ test.text}}</p>
+    </div>
+    </div>
+    </div>
+    {% endfor %}
+</div>

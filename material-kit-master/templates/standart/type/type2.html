@@ -1,0 +1,17 @@
+{% load static %}
+
+
+  <div class="features">
+    <div class="row">
+      {% for test in type.container.all %}
+      <div class="col-md-4">
+        <div class="info">
+
+          <h4 class="info-title">{{ test.title}}</h4>
+          <p>{{ test.text|safe}}</p>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>

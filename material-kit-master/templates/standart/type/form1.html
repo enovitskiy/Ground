@@ -1,0 +1,193 @@
+{% load static %}
+<script>
+
+
+function call() {
+
+    let arr= {csrfmiddlewaretoken:document.getElementsByName('csrfmiddlewaretoken')[0].value}
+    $(":input[title=Call]").each(function(){
+    arr[$(this).attr('name')]=$(this).val();
+    });
+
+  arr['title']=argument;
+  console.log(arr);
+  console.log(location.hostname);
+  $.ajax({url:'/ru/visits/forms/',
+                    type: 'post',
+                    data: arr,
+                    success: function () {alert('Super');},
+                    error: function () {
+                    alert('Ошибка получения запроса')
+                    },
+                     })
+}
+
+function form(form) {
+
+    let arr= {csrfmiddlewaretoken:document.getElementsByName('csrfmiddlewaretoken')[0].value}
+    $(":input[title=Form]").each(function(){
+    arr[$(this).attr('name')]=$(this).val();
+    });
+
+  arr['title']=argument;
+  console.log(arr);
+  console.log(location.hostname);
+  $.ajax({url:'/ru/visits/forms/',
+                    type: 'post',
+                    data: arr,
+                    success: function () {alert('Super');},
+                    error: function () {
+                    alert('Ошибка получения запроса')
+                    },
+                     })
+}
+function service() {
+
+    let arr= {csrfmiddlewaretoken:document.getElementsByName('csrfmiddlewaretoken')[0].value}
+    $(":input[title=Service]").each(function(){
+    arr[$(this).attr('name')]=$(this).val();
+    });
+
+  arr['title']=argument;
+  console.log(arr);
+  console.log(location.hostname);
+  $.ajax({url:'/ru/visits/forms/',
+                    type: 'post',
+                    data: arr,
+                    success: function () {alert('Super');},
+                    error: function () {
+                    alert('Ошибка получения запроса')
+                    },
+                     })
+}
+
+</script>
+
+
+
+        <div class="section text-center">
+        {% for test in type.container.all %}
+        <div class="row">
+        <div class="col-md-12 ml-auto mr-auto">
+        <h2 class="title">{{ test.title}}</h2>
+        {{ test.text|safe}}
+
+        </div>
+        </div>
+        {% endfor %}
+        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+        </p>
+
+        </div>
+
+
+
+
+
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mx-auto">
+
+            <div class="card card-login">
+                <div class="card-header card-header-info text-center">
+
+                    <h4 class="card-title">Login</h4>
+                </div>
+                                                    <p>
+                                    <a class="btn btn-block btn-info"  data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
+                                    <button class="btn btn-block btn-primary"  type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
+                                    <button class="btn btn-block btn-secondary"  type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Toggle second element</button>
+                                    </p>
+                <div class="card-body">
+                          <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">face</i>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="First Name">
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">mail</i>
+                      </span>
+                    </div>
+                    <input type="email" class="form-control" placeholder="Email">
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">lock_outline</i>
+                      </span>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Password" autocomplete="">
+                  </div>
+                </div>
+                <div class="footer text-center">
+                  <a href="javascript:;" class="btn btn-primary btn-link btn-wd btn-lg">Get Started</a>
+                </div>
+
+
+
+                                <div class="collapse multi-collapse" id="multiCollapseExample1">
+            <div class="card card-body">
+            <form method="post" >
+
+            <div class="form-group"> {{ call.name}} <span class="input-group-text">
+                        <i class="material-icons">face</i>
+                      </span></div>
+            <div class="form-group"> {{ call.email}} <span class="input-group-text">
+                        <i class="material-icons">mail</i>
+                      </span></div>
+            <div class="form-group"> {{ call.metka}} </div>
+            <div class="navbar-nav ml-auto">
+            <button type="submit" class="btn btn-secondary">Submit</button>{% csrf_token %}
+            </div>
+            </form>
+            </div>
+            </div>
+
+
+            <div class="collapse multi-collapse" id="multiCollapseExample2">
+            <div class="card card-body">
+            <form method="post" >
+            <div class="input-group-prepend"> {{ form.name}}<span class="input-group-text">
+                        <i class="material-icons">face</i>
+                      </span> </div>
+            <div class="form-group"> {{ form.email}} <span class="input-group-text">
+                        <i class="material-icons">mail</i>
+                      </span></div>
+            <div class="form-group"> {{ form.metka}} </div>
+            <div class="navbar-nav ml-auto">
+                {% csrf_token %}
+            <button type="submit" class="btn btn-secondary">Submit</button>
+            </div>
+            </form>
+            </div>
+            </div>
+
+            <div class="collapse multi-collapse" id="multiCollapseExample3">
+            <div class="card card-body">
+            <form method="post" >
+            <div class="custom-file">
+            <div class="form-group "> {{ service.name}}<span class="input-group-text">
+                        <i class="material-icons">face</i>
+                      </span> </div></div>
+            <div class="form-group"> {{ service.email}} <span class="input-group-text">
+                        <i class="material-icons">mail</i>
+                      </span></div>
+            <div class="form-group"> {{ service.metka}} </div>
+            <div class="navbar-nav ml-auto">
+
+            <button type="submit" class="btn btn-secondary">Submit</button>{% csrf_token %}
+            </div>
+            </form>
+            </div>
+            </div>
+
+            </div>
+          </div>
+        </div>
+      </div>

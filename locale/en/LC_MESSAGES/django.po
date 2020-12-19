@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-16 17:43+0000\n"
+"PO-Revision-Date: 2020-12-16 17:44+0000\n"
+"Last-Translator: b'Evgeniy Novitskiy <e.novitskiy@uretekbelarus.com>'\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.9.5\n"
+
+#: Groundtek/settings.py:149
+msgid "English"
+msgstr "English"
+
+#: Groundtek/settings.py:150
+msgid "Russian"
+msgstr "Russian"
+
+#: Groundtek/settings.py:151
+msgid "Polish"
+msgstr "Polish"
+
+#: material-kit-master/templates/standart/base.html:72
+#: material-kit-master/templates/standart/basepage.html:100
+#: material-kit-master/templates/standart/main_form.html:105
+msgid "Language"
+msgstr "Language"
+
+#: material-kit-master/templates/standart/base.html:96
+msgid "geotechnical engineering"
+msgstr "Geotechnical engineering"
+
+#: material-kit-master/templates/standart/footer.html:21
+msgid "made by Groundtek"
+msgstr "made by Groundtek"
+
+#: visits/forms.py:32
+msgid "Name"
+msgstr "Name"
+
+#: visits/forms.py:33
+msgid "email"
+msgstr "Email"
+
+#: visits/forms.py:34
+msgid "metka"
+msgstr "How would you best categorize this project?"
+
+#~ msgid "Select your Z value here"
+#~ msgstr "First name"

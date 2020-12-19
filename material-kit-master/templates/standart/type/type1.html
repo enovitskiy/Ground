@@ -1,0 +1,12 @@
+{% load static %}
+
+<div class="section ">
+{% for test in type.container.all %}
+    <div class="row">
+        <div class="col-md-12 ml-auto mr-auto">
+        <h2 class="title text-center">{{ test.title}}</h2>
+            <p class="'text-justify">{{ test.text|safe}}</p>
+        </div>
+    </div>
+{% endfor %}
+</div>

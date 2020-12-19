@@ -1,0 +1,31 @@
+{% load static %}
+<div class="container-fluid">
+    {% for test in type.contable.all %}
+    {% if forloop.counter|divisibleby:"2" %}
+        <div class="row align-items-center border-top border-bottom border-info">
+    {%else%}
+        <div class="row align-items-center ">
+    {% endif %}
+            <div class="col-12 col-sm-2 col-md-2 ">
+
+            <p class="text-center">{{ test.description|safe}}</p>
+            </div>
+            <div class="col-12 col-sm-5 col-md-5 ">
+
+            <p class="text-center ">{{ test.one|safe}}</p>
+                {% if test.pictures.image.url %}
+             <img class=" mw-100" src="{{ test.pictures.image.url }}" alt="test.pictures.alt">
+                {% endif %}
+            </div>
+            <div class="col-12 col-sm-5 col-md-5 ">
+
+            <p class="text-center">{{ test.two|safe}}</p>
+                {% if test.pictures.image.url %}
+            <img class=" mw-100" src="{{ test.picturesvs.image.url }}" alt="test.picturesvs.alt">
+                {% endif %}
+            </div>
+
+        </div>
+    {% endfor %}
+
+</div>

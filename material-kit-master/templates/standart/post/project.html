@@ -1,0 +1,32 @@
+{% extends nid.template_name.title %}
+{% load i18n %}
+{% load static %}
+
+
+{% block content %}
+
+<ul class="nav nav-pills  ">
+    {% for metka in metka %}
+  <li class="nav-item dropdown  ">
+    <a class="btn btn-info dropdown-toggle " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{metka.title}}</a>
+    <div class="dropdown-menu">
+         {% for point in metka.marks.all %}
+             <a class="dropdown-item bg-light"href="{{ point.get_absolute_url }}" >
+                            {{point.title}}
+                            </a>
+        {% endfor %}
+
+    </div>
+  </li>
+    {% endfor %}
+</ul>
+
+
+    {% for type in text %}
+<div class="container">
+  {% include type.template_name.title %}
+</div>
+{% endfor %}
+
+
+{% endblock %}
