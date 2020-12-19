@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
 LOGIN_REDIRECT_URL = reverse_lazy('visits:dashboard')
 
@@ -42,11 +43,11 @@ SECRET_KEY = 'au4mn%^3j3h$hil%vs+r-6_k7r9xu&ma0ql3*v0m@jl0kx6^ui'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','groundtek.tech','e-novitskiy.site','uretekbelarus.by']
 
 # Application definition
 
-# SITE_ID = 1
+SITE_ID=1
 
 INSTALLED_APPS = [
     'visits',
@@ -58,7 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'phonenumber_field',
-    # 'django.contrib.sites',
+    'django.contrib.sites',
     'standart',
     'rosetta',
     'parler',
@@ -134,7 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 PARLER_LANGUAGES = {
-    None: (
+    SITE_ID: (
         {'code': 'en'},
         {'code': 'pl'},
         {'code': 'ru'},
@@ -145,7 +146,7 @@ PARLER_LANGUAGES = {
     }
 }
 
-from django.utils.translation import gettext_lazy as _
+
 LANGUAGES = (
     ('en', _('English')),
     ('ru', _('Russian')),
@@ -179,4 +180,3 @@ LOCALE_PATHS = (
 
 
 VISITS_SESSION_ID = 'visits'
-

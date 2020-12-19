@@ -2,6 +2,7 @@ from .visits import Visits
 from .models import Visitors
 import requests
 from standart.models import Navconstruct
+from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 
@@ -58,9 +59,11 @@ def visit(request):
     return {'visit':t}
 
 def menu(request):
-    first = Navconstruct.objects.first()
+
+
+    first = Navconstruct.objects.filter(site=Site.objects.get_current()).first()
     navbar={}
 
-    for i in   Navconstruct.objects.filter(bar='first'):
-        navbar[i]=Navconstruct.objects.filter(newslug=i.newslug,bar='second')
+    for i in   Navconstruct.objects.filter(bar='first',site=Site.objects.get_current()):
+        navbar[i]=Navconstruct.objects.filter(newslug=i.newslug,bar='second',site=Site.objects.get_current())
     return {'first':first,'navbar':navbar}

@@ -6,16 +6,23 @@ from django.utils.translation import gettext_lazy as _
 class OrderService(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['email','city','message']
+        fields = ['name','phone','email','city','message','title','visitors','upload']
         widgets = {
+            'name': forms.TextInput( attrs={'type': "text", 'class': "form-control", 'title': 'Call', 'required': "true", 'id': 'namecall', 'oninvalid': "this.setCustomValidity('Wow!')"}),
+            'phone': forms.NumberInput(attrs={'type': "text", 'class': "form-control", 'title': 'Form', 'required': "true", 'id': 'formcall'}),
             'city': forms.TextInput(attrs={'type': "text", 'class': "form-control has-feedback", 'title': 'Form', 'required': "true",'id': 'formcall'}),
             'message': forms.TextInput( attrs={'type': "text", 'class': "form-control has-feedback", 'title': 'Form', 'required': "true",'id': 'formcall'}),
             'email': forms.EmailInput(attrs={'type': "email", 'class': "form-control", 'title':'Form','required':"true",'id':'formcall'}),
+            'upload': forms.FileInput(attrs={'type':"file", 'name':"myfile",'multiple': True}),
+
         }
         labels = {
+            'name': _('Name'),
+            'phone': _('Phone 375123456789'),
             'email': _('email'),
             'city': _('city'),
             'message': _('message'),
+            'upload': _('upload'),
 
         }
 
@@ -26,8 +33,10 @@ class OrderService(forms.ModelForm):
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['email','city','message','metka']
+        fields = ['name','phone','email','city','message','metka','title','visitors']
         widgets = {
+            'name': forms.TextInput( attrs={'type': "text", 'class': "form-control", 'title': 'Call', 'required': "true", 'id': 'namecall','oninvalid': "this.setCustomValidity('Wow!')"}),
+            'phone': forms.NumberInput(attrs={'type': "text", 'class': "form-control", 'title': 'Form', 'required': "true", 'id': 'formcall'}),
             'city': forms.TextInput(attrs={'type': "text", 'class': "form-control has-feedback", 'title': 'Form', 'required': "true",'id': 'formcall'}),
             'message': forms.TextInput( attrs={'type': "text", 'class': "form-control has-feedback", 'title': 'Form', 'required': "true",'id': 'formcall'}),
             'email': forms.EmailInput(attrs={'type': "email", 'class': "form-control", 'title':'Form','required':"true",'id':'formcall'}),
@@ -38,6 +47,8 @@ class OrderForm(forms.ModelForm):
             'city': _('city'),
             'message': _('message'),
             'metka': _('metka'),
+            'name': _('Name'),
+            'phone': _('Phone 375123456789'),
 
         }
 

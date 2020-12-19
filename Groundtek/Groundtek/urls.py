@@ -29,7 +29,7 @@ urlpatterns = i18n_patterns(
     re_path(r'^sitemap.xml/$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('admin/', admin.site.urls),
     path(r'visits/', include('visits.urls', namespace='visits')),
-    path(r'rosetta/', include('rosetta.urls')),
+    re_path(r'rosetta/', include('rosetta.urls')),
     path(r'', include('standart.urls', namespace='standart')),
 
 

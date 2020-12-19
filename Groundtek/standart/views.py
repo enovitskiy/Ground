@@ -1,18 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Category,Navconstruct,Container,Metka,Examples,Templatecategory
-from visits.models import Visitors
 from django.http import HttpResponse
-from visits.visits import Visits
-from django.contrib.auth.decorators import login_required
 from visits.forms import  OrderService, OrderForm, OrderCall
 from collections import OrderedDict
 from visits.visits import Visits
 from visits.models import Visitors
 from django.db.models import Q
-
-# from django.contrib.gis.geoip2 import GeoIP2
-
-import geoip2.database
+from django.contrib.sites.models import Site
 
 
 
@@ -24,7 +18,7 @@ def test(request):
 
 
 def post_list(request):
-    nid = Navconstruct.objects.first()
+    nid = Navconstruct.objects.filter(site=Site.objects.get_current()).first()
     text = Container.objects.filter(name=nid)
     categories=Category.objects.all()
     return render(request, 'standart/post/list.html', {'categories':categories,'nid':nid,'text': text,
@@ -43,21 +37,21 @@ def navigator(request, slug, sslug=None):
     if sslug:
         try:
             sslug = get_object_or_404(Templatecategory, translations__slug=sslug, )
-            nid = get_object_or_404(Navconstruct, newsslug=sslug,bar='second' )
+            nid = get_object_or_404(Navconstruct, newsslug=sslug,bar='second',site=Site.objects.get_current() )
         except:
             slug=get_object_or_404(Templatecategory, translations__slug=slug, )
-            nid = get_object_or_404(Navconstruct, newslug=slug,bar='first')
+            nid = get_object_or_404(Navconstruct, newslug=slug,bar='first',site=Site.objects.get_current())
 
     else:
         slug = get_object_or_404(Templatecategory, translations__slug=slug, )
-        nid = get_object_or_404(Navconstruct, newslug=slug,bar='first')
+        nid = get_object_or_404(Navconstruct, newslug=slug,bar='first',site=Site.objects.get_current())
     if nid.status == 'login':
         return redirect('visits:login')
     if nid.status =='example':
         metka = Metka.objects.filter(Q(marks__isnull=False) ).distinct()
 
         slug = get_object_or_404(Templatecategory, translations__slug=slug, )
-        nid = get_object_or_404(Navconstruct, newslug=slug,bar='first')
+        nid = get_object_or_404(Navconstruct, newslug=slug,bar='first',site=Site.objects.get_current())
         if sslug:
             nd = get_object_or_404(Examples, translations__slug=sslug, )
             description = nd
@@ -73,7 +67,7 @@ def navigator(request, slug, sslug=None):
         text = Container.objects.filter(name=nid)
         categories=Category.objects.all()
     if nid.status != 'odinary':
-        formbar = Navconstruct.objects.exclude(status='odinary').exclude(status='example').exclude(status='login').filter(bar='second')
+        formbar = Navconstruct.objects.exclude(status='odinary').exclude(status='example').exclude(status='login').filter(bar='second',site=Site.objects.get_current())
         if request.method == 'POST':
             data = OrderedDict()
             data.update(request.POST)
@@ -86,48 +80,29 @@ def navigator(request, slug, sslug=None):
                 pass
 
             if nid.status == 'form':
-                call = OrderCall(data)
+                print(data)
                 form = OrderForm(data)
-                if form.is_valid() and call.is_valid():
-                    form.save()
-                    call.save()
-                    done = nid.hreflogo
-                else:
-                    done = nid.alt
+
             elif nid.status == 'call':
-                form = False
-                call=OrderCall(data)
-                if call.is_valid():
-                    call.save()
-                    done = nid.hreflogo
-
-                else:
-                    done = nid.alt
+                form=OrderCall(data)
             elif nid.status == 'service':
-                call = OrderCall(data)
                 form = OrderService(data)
-                if form.is_valid() and call.is_valid():
-                    form.save()
-                    call.save()
-                    done = nid.hreflogo
-                else:
-                    done = nid.alt
-
-
+            if form.is_valid():
+                form.save()
+                done = nid.hreflogo
+            else:
+                done = nid.alt
         else:
             done = None
             if nid.status == 'form':
-                call = OrderCall(request.POST)
                 form = OrderForm(request.POST)
             elif nid.status == 'call':
-                form = False
-                call = OrderCall(request.POST)
+                form = OrderCall(request.POST)
             elif nid.status == 'service':
-                call = OrderCall(request.POST)
-                form = OrderService(request.POST)
+                form = OrderService()
 
 
         return render(request, 'standart/post/formcall.html', {'categories':categories, 'text':text, 'nid':nid, 'done':done,'formbar':formbar,
-                                                               'form' : form,'call': call })
+                                                               'form' : form})
     return render(request, 'standart/post/list.html', {'categories':categories, 'text':text, 'nid':nid,
                                                       })

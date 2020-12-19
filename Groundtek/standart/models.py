@@ -7,7 +7,7 @@ from pathlib import Path
 import os.path
 from .myutilits import Photoes
 from parler.models import TranslatableModel, TranslatedFields
-
+from django.contrib.sites.models import Site
 
 class Pictures(TranslatableModel):
     translations = TranslatedFields(
@@ -32,7 +32,7 @@ class Pictures(TranslatableModel):
             super(Pictures, self).save(force_insert, force_update)
 
         else:
-            if (self.width,self.height)==(0,0):
+            if (self.width,self.height)==(0,0) or (self.width,self.height)==(None, None):
                 (self.width, self.height) = img.size
             upload_path='material-kit-master/products/'
             if str(self.image).find(upload_path)==0:
@@ -151,6 +151,7 @@ class Navconstruct(TranslatableModel):
                             )
     newsslug = models.ForeignKey(Templatecategory,on_delete=models.CASCADE, null=True, blank=True, related_name="newsslug", verbose_name='Второе меню',
                             )
+    site = models.ManyToManyField(Site, blank=True, related_name="site", )
     class Meta:
         verbose_name = "Раздел"
         verbose_name_plural = "Основное меню"

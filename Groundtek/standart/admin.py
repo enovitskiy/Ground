@@ -3,6 +3,17 @@ from .models import Post, Category, \
     Navconstruct,Subnavigator,Text,Container,Templates,Pictures,Metka,Examples,Table,Templatecategory
 from parler.admin import TranslatableStackedInline
 
+from django.contrib.sites.models import Site
+
+admin.site.unregister(Site)
+class SiteAdmin(admin.ModelAdmin):
+    fields = ('id', 'name', 'domain')
+    readonly_fields = ('id',)
+    list_display = ('id', 'name', 'domain')
+    list_display_links = ('name',)
+    search_fields = ('name', 'domain')
+admin.site.register(Site, SiteAdmin)
+
 admin.site.register(Text)
 
 
@@ -17,6 +28,7 @@ duplicate_event.short_description = "Duplicate selected record"
 
 
 class PostAdmin(admin.ModelAdmin):
+
     list_display = ('title', 'slug', 'author', 'publish', 'status')
     list_filter = ('status', 'created', 'publish', 'author')
     search_fields = ('title', 'body')
@@ -57,6 +69,8 @@ class Example(TranslatableStackedInline):
     extra = 0
 @admin.register(Navconstruct)
 class Navconstruct(TranslatableAdmin):
+    filter_horizontal = ('site',)
+    list_filter = ('site', )
     list_display = ['name', 'slug']
     inlines = [Example,Menu]
     actions = [duplicate_event]

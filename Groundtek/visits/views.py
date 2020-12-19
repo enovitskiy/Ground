@@ -3,14 +3,15 @@ from visits.visits import Visits
 from visits.models import Visitors,Profile
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm, UserRegistrationForm
 from standart.models import Navconstruct
+from django.contrib.sites.models import Site
 
 @login_required
 def dashboard(request):
-    return render(request, 'standart/user/dashboard.html', {})
+    nid = Navconstruct.objects.filter(site=Site.objects.get_current(), status='login').first()
+    return render(request, 'standart/user/dashboard.html', {'nid':nid})
 
 
 
@@ -20,28 +21,28 @@ def check(request):
     return HttpResponse(status=200)
 
 
-def user_login(request):
-    nid = Navconstruct.objects.first()
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(username=cd['username'], password=cd['password'])
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return HttpResponse('Authenticated successfully')
-                else:
-                    return HttpResponse('Disabled account')
-            else:
-                return HttpResponse('Invalid login')
-    else:
-        form = LoginForm()
-    return render(request, 'standart/user/login.html', {'form': form,'nid':nid})
+# def user_login(request):
+#     nid = Navconstruct.objects.filter(site=Site.objects.get_current()).first()
+#     if request.method == 'POST':
+#         form = LoginForm(request.POST)
+#         if form.is_valid():
+#             cd = form.cleaned_data
+#             user = authenticate(username=cd['username'], password=cd['password'])
+#             if user is not None:
+#                 if user.is_active:
+#                     login(request, user)
+#                     return HttpResponse('Authenticated successfully')
+#                 else:
+#                     return HttpResponse('Disabled account')
+#             else:
+#                 return HttpResponse('Invalid login')
+#     else:
+#         form = LoginForm()
+#     return render(request, 'standart/user/login.html', {'form': form,'nid':nid})
 
 
 def register(request):
-    nid = Navconstruct.objects.first()
+    nid = Navconstruct.objects.filter(site=Site.objects.get_current(),status = 'login').first()
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
@@ -60,7 +61,7 @@ def register(request):
 
 @login_required
 def edit(request):
-    nid = Navconstruct.objects.first()
+    nid = Navconstruct.objects.filter(site=Site.objects.get_current(),status = 'login').first()
     if request.method == 'POST':
         user_form = UserEditForm(instance=request.user, data=request.POST)
         profile_form = ProfileEditForm(instance=request.user.profile, data=request.POST, files=request.FILES)

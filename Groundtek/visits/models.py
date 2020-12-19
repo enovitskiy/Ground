@@ -32,6 +32,7 @@ class Order(models.Model):
     phone = models.CharField(max_length=50,blank=True, null=True)
     visitors = models.ForeignKey('Visitors', on_delete=models.CASCADE, related_name="visit", null=True, blank=True,
                                 verbose_name='Visitors', help_text='привязка к Visitors')
+    upload = models.FileField(upload_to='uploads/',blank=True, null=True)
     class Meta:
         ordering = ('-created',)
         verbose_name = 'Заказ'

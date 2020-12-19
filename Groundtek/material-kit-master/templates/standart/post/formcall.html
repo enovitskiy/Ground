@@ -31,19 +31,19 @@
     <div class="section section-contacts">
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto">
-            <form class="contact-form" method="post">
+            <form class="contact-form" method="post" enctype="multipart/form-data">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label class="bmd-label-floating">{{ call.name.label }}</label>
-                    {{ call.name }}
+                    <label class="bmd-label-floating">{{ form.name.label }}</label>
+                    {{ form.name }}
 
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label class="bmd-label-floating">{{call.phone.label}}</label>
-                    {{ call.phone }}
+                    <label class="bmd-label-floating">{{form.phone.label}}</label>
+                    {{ form.phone }}
                   </div>
 
                 </div>
@@ -71,6 +71,13 @@
                 <label class="bmd-label-floating">{{form.message.label}}</label>
                  {{ form.message }}
               </div>
+                              <div>
+
+                <label class="bmd-label-floating">{{form.upload.label}}</label>
+                {{ form.upload }}
+
+              </div>
+
 
 
 
