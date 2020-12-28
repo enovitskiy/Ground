@@ -1,5 +1,5 @@
 {% extends "standart/user/form.html" %}
-
+{% load i18n %}
 {% block content %}
 <div class="row justify-content-center">
 <ul class="nav nav-pills  ">
@@ -72,9 +72,10 @@
                  {{ form.message }}
               </div>
                               <div>
-
-                <label class="bmd-label-floating">{{form.upload.label}}</label>
-                {{ form.upload }}
+                <div class="input-group">
+                <label class="bmd-label-floating">{{form.upload.label}}</label></div>
+                    <div class="input-group-prepend">
+                {{ form.upload }}</div>
 
               </div>
 
@@ -85,7 +86,7 @@
                 {% csrf_token %}
               <div class="row">
                 <div class="col-md-4 ml-auto mr-auto text-center">
-                 <button type="submit" class="btn btn-info btn-link btn-wd btn-lg">Submit</button>
+                 <button type="submit" class="btn btn-info btn-link btn-wd btn-lg">{% trans "Submit" %}</button>
                 </div>
               </div>
             </form>

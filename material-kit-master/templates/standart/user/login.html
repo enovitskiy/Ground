@@ -1,6 +1,6 @@
 {% extends "standart/user/base.html" %}
 
-
+{% load i18n %}
 
 {% block login %}
 
@@ -11,42 +11,45 @@
             <div class="card card-login">
 
                     <div class="card-header card-header-info text-center">
-                    <h1>Log-in</h1>
+                    <h1>{% trans "Log-in" %}</h1>
                     </div>
                 <form action="{% url 'visits:login' %}" method="post">
+
                 <div class="card-body">
+
                                         {% if form.errors %}
                     <p>
-                    Your username and password didn't match.
-                    Please try again.
+                        {% trans "Your username and password didn't match. Please try again." %}
+
+
                     </p>
                     {% else %}
-                    {{nid}}
-                    <p>Please, use the following form to log-in. If you don't have an account <a href="{% url 'visits:register' %}">register here </a></p>
+                    <p>{% trans "Please, use the following form to log-in. If you don't have an account" %}<a href="{% url 'visits:register' %}">{% trans "register here" %} </a></p>
                     {% endif %}
 
-                    <p><a href="{% url 'visits:password_reset' %}">Forgotten your password?</a></p>
+                    <p><a href="{% url 'visits:password_reset' %}">{% trans "Forgotten your password?" %}</a></p>
                     <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
                         <i class="material-icons">face</i>
-                        </span>
-                        {{ form.username }}
-                    </div>
 
+                        </span>
+
+                    </div>
+                     {{ form.username }}
                     </div>
                     <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
                         <i class="material-icons">lock_outline</i>
-                        </span>{{ form.password }}
+                        </span>
                     </div>
-
+                    {{ form.password }}
                     </div>
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ next }}"/>
                     <div class="footer text-center">
-                    <button type="submit" class="btn btn-info btn-link btn-wd btn-lg">Submit</button>
+                    <button type="submit" class="btn btn-info btn-link btn-wd btn-lg">{% trans "Submit" %}</button>
                     </div>
 
                 </div>

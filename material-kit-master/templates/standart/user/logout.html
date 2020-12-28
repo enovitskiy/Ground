@@ -1,6 +1,7 @@
 {% extends "standart/user/base.html" %}
+{% load i18n %}
 {% block title %}Logged out{% endblock %}
 {% block login %}
-    <h1>Logged out</h1>
-    <p>You have been successfully logged out. You can <a href="{% url 'visits:login' %}">log-in again</a>.</p>
+    <h1>{% trans "Logged out" %}</h1>
+    <p>{% trans "You have been successfully logged out. You can" %} <a href="{% url 'visits:login' %}">{% trans "log-in again" %}</a>.</p>
 {% endblock %}

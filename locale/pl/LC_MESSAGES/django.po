@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-16 17:43+0000\n"
+"POT-Creation-Date: 2020-12-22 21:50+0000\n"
 "PO-Revision-Date: 2020-12-16 17:47+0000\n"
 "Last-Translator: b'Evgeniy Novitskiy <e.novitskiy@uretekbelarus.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,18 +16,20 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.5\n"
 
-#: Groundtek/settings.py:149
+#: Groundtek/evgeniy.py:151 Groundtek/settings.py:151
 msgid "English"
 msgstr "Angielski"
 
-#: Groundtek/settings.py:150
+#: Groundtek/evgeniy.py:152 Groundtek/settings.py:152
 msgid "Russian"
 msgstr "Rosyjski"
 
-#: Groundtek/settings.py:151
+#: Groundtek/evgeniy.py:153 Groundtek/settings.py:153
 msgid "Polish"
 msgstr "Polskie"
 
@@ -45,17 +47,94 @@ msgstr "Inżynieria geotechniczna"
 msgid "made by Groundtek"
 msgstr "wykonane przez Groundtek"
 
-#: visits/forms.py:32
+#: material-kit-master/templates/standart/user/base.html:22
+#, python-format
+msgid ""
+"\n"
+"        <h1 class=\"text-center\">Hello %(name)s,</h1>\n"
+"    "
+msgstr ""
+
+#: material-kit-master/templates/standart/user/login.html:14
+msgid "Log-in"
+msgstr ""
+
+#: material-kit-master/templates/standart/user/login.html:22
+msgid "Your username and password didn't match. Please try again."
+msgstr ""
+
+#: material-kit-master/templates/standart/user/login.html:27
+msgid "Please, use the following form to log-in. If you don't have an account"
+msgstr ""
+
+#: material-kit-master/templates/standart/user/login.html:27
+msgid "register here"
+msgstr ""
+
+#: material-kit-master/templates/standart/user/login.html:30
+msgid "Forgotten your password?"
+msgstr ""
+
+#: material-kit-master/templates/standart/user/login.html:52
+msgid "Submit"
+msgstr ""
+
+#: material-kit-master/templates/standart/user/logout.html:4
+msgid "Logged out"
+msgstr ""
+
+#: material-kit-master/templates/standart/user/logout.html:5
+msgid "You have been successfully logged out. You can"
+msgstr ""
+
+#: material-kit-master/templates/standart/user/logout.html:5
+msgid "log-in again"
+msgstr ""
+
+#: material-kit-master/templates/standart/user/register.html:13
+#: material-kit-master/templates/standart/user/register.html:74
+msgid "Create my account"
+msgstr ""
+
+#: material-kit-master/templates/standart/user/register.html:14
+msgid "Please, sign up using the following form:"
+msgstr ""
+
+#: visits/forms.py:21 visits/forms.py:51 visits/forms.py:67
 msgid "Name"
 msgstr "Nazwisko"
 
-#: visits/forms.py:33
+#: visits/forms.py:22 visits/forms.py:52 visits/forms.py:68
+msgid "Phone 375123456789"
+msgstr ""
+
+#: visits/forms.py:23 visits/forms.py:47
 msgid "email"
 msgstr "E-mail"
 
-#: visits/forms.py:34
+#: visits/forms.py:24 visits/forms.py:48
+msgid "city"
+msgstr ""
+
+#: visits/forms.py:25 visits/forms.py:49
+msgid "message"
+msgstr ""
+
+#: visits/forms.py:26
+msgid "upload"
+msgstr ""
+
+#: visits/forms.py:50
 msgid "metka"
 msgstr "Jak najlepiej sklasyfikowałbyś ten projekt?"
+
+#: visits/forms.py:86
+msgid "Password"
+msgstr ""
+
+#: visits/forms.py:87
+msgid "Repeat password"
+msgstr ""
 
 #~ msgid "Select your Z value here"
 #~ msgstr "Nazwisko"

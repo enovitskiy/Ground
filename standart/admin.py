@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Post, Category, \
-    Navconstruct,Subnavigator,Text,Container,Templates,Pictures,Metka,Examples,Table,Templatecategory
+    Navconstruct,Text,Container,Templates,Pictures,Metka,Examples,Table,Templatecategory
 from parler.admin import TranslatableStackedInline
 
 from django.contrib.sites.models import Site
@@ -69,7 +69,7 @@ class Example(TranslatableStackedInline):
     extra = 0
 @admin.register(Navconstruct)
 class Navconstruct(TranslatableAdmin):
-    filter_horizontal = ('site',)
+    filter_horizontal = ('site','category')
     list_filter = ('site', )
     list_display = ['name', 'slug']
     inlines = [Example,Menu]
@@ -79,10 +79,6 @@ class Navconstruct(TranslatableAdmin):
 
 
 
-class SubnavigatorAdmin(TranslatableAdmin):
-    list_display = ['name', 'slug']
-
-admin.site.register(Subnavigator, SubnavigatorAdmin)
 
 
 class PicturesAdmin(TranslatableAdmin):

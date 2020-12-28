@@ -10,7 +10,7 @@
 
 
     <meta charset="utf-8">
-    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'fav.ico' %}" type="image/x-icon">
 
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     <title>{{nid.title}}</title>
@@ -54,15 +54,11 @@ function check() {
 <body class="index-page sidebar-collapse" onload="check()">
     <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
         <div class="container">
-          <div class="navbar-translate">
+          <div class="navbar-translate w-25">
             <a class="navbar-brand" href="/en/">
-              Grountek</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="navbar-toggler-icon"></span>
-          <span class="navbar-toggler-icon"></span>
-          <span class="navbar-toggler-icon"></span>
-        </button>
+                <img src="{% static 'tek.png' %}" alt="Grountek" class="img-raised rounded img-fluid float-start w-75">
+              </a>
+
           </div>
           <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
@@ -75,7 +71,7 @@ function check() {
 
                     <a href='{{ v.get_absolute_url }}' class="dropdown-toggle nav-link" data-toggle="dropdown"">
 
-                     <i class="material-icons">apps</i> {{ v.name }} </a>
+                     {{v.example|safe}}{{ v.name }} </a>
                 </a>
                 {%else%}<li class="nav-item">
 
@@ -90,7 +86,7 @@ function check() {
                     {% for subv in sub%}
 
                      <a href="{{ subv.get_absolute_url }}" class="dropdown-item" >
-                    <i class="material-icons">content_paste</i> {{ subv.name }}
+                    {{subv.example|safe}} {{ subv.name }}
                   </a>
                     {% endfor %}
                 </div> {% endif %}
@@ -132,7 +128,6 @@ function check() {
     <div class="main main-raised">
 
     <div class="container">
-        Число 3почещенийсайта{{visit.num_visits}}
         {% block content %}
         {% endblock %}
     </div>
@@ -157,5 +152,25 @@ function check() {
     <!--  Google Maps Plugin    -->
     <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
     <script src="{% static 'assets/js/material-kit.js' %}" type="text/javascript"></script>
+
+<script>
+   $(document).ready(function()  {
+      //init DateTimePickers
+      materialKit.initFormExtendedDatetimepickers();
+
+      // Sliders Init
+      materialKit.initSliders();
+    })
+function scrollToDownload() {
+      if ($('.section-download').length != 0) {
+        $("html, body").animate({
+          scrollTop: $('.section-download').offset().top
+        }, 1000);
+      }
+    }
+
+
+</script>
+
 </body>
 </html>

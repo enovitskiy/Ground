@@ -80,13 +80,12 @@ def navigator(request, slug, sslug=None):
                 pass
 
             if nid.status == 'form':
-                print(data)
                 form = OrderForm(data)
 
             elif nid.status == 'call':
                 form=OrderCall(data)
             elif nid.status == 'service':
-                form = OrderService(data)
+                form = OrderService(data=data, files=request.FILES)
             if form.is_valid():
                 form.save()
                 done = nid.hreflogo

@@ -1,10 +1,9 @@
-from visits.forms import OrderService, OrderForm, OrderCall, LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
+from visits.forms import OrderService, OrderForm, OrderCall, UserRegistrationForm, UserEditForm, ProfileEditForm
 from visits.visits import Visits
 from visits.models import Visitors,Profile
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .forms import LoginForm, UserRegistrationForm
 from standart.models import Navconstruct
 from django.contrib.sites.models import Site
 
@@ -69,6 +68,11 @@ def edit(request):
             user_form.save()
             profile_form.save()
             return render(request, 'standart/user/dashboard.html', {'nid':nid})
+        else:
+            return render(request,
+                          'standart/user/edit.html',
+                          {'user_form': user_form,
+                           'profile_form': profile_form, 'nid': nid})
 
     else:
         user_form = UserEditForm(instance=request.user)

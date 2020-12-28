@@ -47,7 +47,7 @@ ALLOWED_HOSTS = ['127.0.0.1','groundtek.tech','e-novitskiy.site','uretekbelarus.
 
 # Application definition
 
-SITE_ID=1
+SITE_ID=2
 
 INSTALLED_APPS = [
     'visits',
@@ -161,7 +161,7 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = False
+USE_L10N = True
 
 USE_TZ = True
 
@@ -180,4 +180,3 @@ LOCALE_PATHS = (
 
 
 VISITS_SESSION_ID = 'visits'
-DATE_INPUT_FORMATS = ['%d/%m/%Y','%Y-%m-%d %I:%M %p','%m/%d/%Y %I:%M %p']

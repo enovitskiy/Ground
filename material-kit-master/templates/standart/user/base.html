@@ -1,24 +1,27 @@
 {% extends nid.template_name.title %}
 {% load static%}
-
+{% load i18n %}
 
 {% block log %}
 
 
 <ul class="nav nav-pills nav-pills-danger justify-content-center">
+    {% for list in nid.category.all %}
+    {% if forloop.counter <= 2 %}
+    <li class="nav-item"><a class="nav-link" href="{% url list.slug %}">{{list.name}}</a></li>
+    {% endif %}
+    {% if request.user.is_authenticated and forloop.counter > 2 %}
+    <li class="nav-item"><a class="nav-link" href="{% url list.slug %}">{{list.name}}</a></li>
+    {% endif %}
+    {% endfor %}
 
-    <li class="nav-item"><a class="nav-link" href="{% url 'visits:login' %}">Log-in</a></li>
-    <li class="nav-item"><a class="nav-link" href="{% url 'visits:register' %}">Register</a></li>
-        {% if request.user.is_authenticated %}
-    <li class="nav-item"><a class="nav-link" href="{% url 'visits:edit' %}">Edit</a></li>
-    <li class="nav-item"><a class="nav-link" href="{% url 'visits:logout' %}">Logout</a></li>
-    <li class="nav-item"><a class="nav-link" href="{% url 'visits:password_change' %}">Password-change</a></li>
-        {% endif %}
 </ul>
 
 <div class="tab-content tab-space">
     {% if request.user.is_authenticated %}
-        <h1 class="text-center">Hello {{ request.user.first_name }},</h1>
+    {% blocktrans with name=request.user.first_name %}
+        <h1 class="text-center">Hello {{name  }},</h1>
+    {% endblocktrans %}
     {% endif %}
     <div class="tab-pane active text-center" id="pill1">
             {% block login %}

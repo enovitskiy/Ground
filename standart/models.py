@@ -88,12 +88,20 @@ class Post(models.Model):
 class Category(TranslatableModel):
     translations = TranslatedFields(
         name=models.CharField(max_length=200, db_index=True),
-        slug=models.SlugField(max_length=200, db_index=True, unique=True)
     )
+    slug=models.CharField(max_length=200, null=True, blank=True)
+    order = models.IntegerField(null=True, blank=True, verbose_name='Порядок в меню',
+                                help_text='последователность отображения в меню')
+
 
     class Meta:
         verbose_name = 'category'
         verbose_name_plural = 'categories'
+        ordering = [
+            "order",
+        ]
+    def __str__(self):
+        return self.name
 
 
 class Templatecategory(TranslatableModel):
@@ -133,8 +141,8 @@ class Navconstruct(TranslatableModel):
     translations = TranslatedFields(
     name = models.CharField(max_length=200, verbose_name='Название раздела', help_text='название основного раздела'),
     slug = models.SlugField(max_length=200,null=True, unique=True, blank=True, verbose_name='URL адрес', help_text='название url адреса'),
-    hreflogo = models.TextField(max_length=100, blank=True, verbose_name='Текст блока', help_text='текст блока'),
-    alt = models.TextField(max_length=300, blank=True, verbose_name='Текст блока', help_text='текст блока'),
+    hreflogo = models.TextField(max_length=100, blank=True, verbose_name='Текст блока успешного сообщения', help_text='текст блока успешного сообщения'),
+    alt = models.TextField(max_length=300, blank=True, verbose_name='Текст блока если данные отправлены неверно', help_text='текст блока если данные отправлены неверно'),
     title = models.CharField(max_length=300, blank=True, verbose_name='Заголовок', help_text='описание заголовка в строке браузера'),
     descrtionmeta = models.TextField(max_length=300, blank=True, verbose_name='Описание страницы', help_text='описание страницы в поискаовика'),
     keywordsmeta = models.TextField(max_length=300, blank=True, verbose_name='Ключевые слова', help_text='ключевые слова для поисковика'),
@@ -143,7 +151,7 @@ class Navconstruct(TranslatableModel):
     order= models.IntegerField(null=True, blank=True, verbose_name='Порядок в меню', help_text='последователность отображения в меню')
     template_name = models.ForeignKey('Templates', on_delete=models.CASCADE, related_name="navtemp", null=True, blank=True,
                                 verbose_name='Templates', help_text='привязка к Templates')
-    example = models.BooleanField(verbose_name='Наличие примера', help_text='наличие примеров в разделе',default=False)
+    example = models.TextField(verbose_name='Иконка', help_text='наличие иконки в navbar',null=True, blank=True,)
     pictures = models.ForeignKey(Pictures, on_delete=models.CASCADE, null=True, blank=True, related_name="navpict", )
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='odinary')
     bar = models.CharField(max_length=10, choices=MENU_CHOICES, default='first')
@@ -152,6 +160,7 @@ class Navconstruct(TranslatableModel):
     newsslug = models.ForeignKey(Templatecategory,on_delete=models.CASCADE, null=True, blank=True, related_name="newsslug", verbose_name='Второе меню',
                             )
     site = models.ManyToManyField(Site, blank=True, related_name="site", )
+    category = models.ManyToManyField(Category, blank=True, related_name="category", help_text='разделы на странице' )
     class Meta:
         verbose_name = "Раздел"
         verbose_name_plural = "Основное меню"

@@ -4,12 +4,13 @@ from . import views
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeDoneView, PasswordChangeView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 from standart.models import Navconstruct
 from django.contrib.sites.models import Site
+from .forms import LoginForm
 nid=Navconstruct.objects.filter(site=Site.objects.get_current(),status = 'login').first()
 urlpatterns = [
 
     re_path(r'^check/$', views.check, name='check'),
     re_path(r'^dash/$', views.dashboard, name='dashboard'),
-    re_path(r'^login/$', LoginView.as_view(template_name='standart/user/login.html', extra_context={'nid':nid}), name='login'),
+    re_path(r'^login/$', LoginView.as_view(template_name='standart/user/login.html', extra_context={'nid':nid},authentication_form=LoginForm), name='login'),
     re_path(r'^logout/$', LogoutView.as_view(template_name='standart/user/logout.html', extra_context={'nid':nid}), name='logout'),
     re_path(r'^password-change/$', PasswordChangeView.as_view(template_name='standart/user/password_change_form.html', extra_context={'nid':nid},success_url=reverse_lazy('visits:password_change_done')),
             name='password_change'),
